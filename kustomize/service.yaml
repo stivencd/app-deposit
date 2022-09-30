@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: app-service-deposit
+spec:
+  type: LoadBalancer
+  selector:
+    app: service-deposit
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5003
+    name: http

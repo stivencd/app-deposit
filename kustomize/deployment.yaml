@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment-deposit
+  labels:
+    app: service-deposit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-deposit
+  template:
+    metadata:
+      labels:
+        app: service-deposit
+    spec:
+      containers:
+      - name: app-deposit
+        image: stivid007/nodejs-deposit:1
+        ports:
+        - containerPort: 5003
+        env:
+        - name: NACOS_SERVERADDR
+          value: "164.90.255.230:8848"
+        - name: NACOS_NAMESPACE
+          value: "aforo255"
+        - name: NACOS_IDENTITYKEY
+          value: "nacos"
+        - name: NACOS_IDENTITYVALUE
+          value: "nacos"
+        - name: NACOS_ENV
+          value: "PROD"
